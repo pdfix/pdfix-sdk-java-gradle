@@ -27,7 +27,10 @@ public class App {
                 throw new Exception("Missing platform support");
                 // return "/x86/" + name + ".dll";
         } else if (os.indexOf("nux") >= 0) {
-            return "/x86_64/lib" + name + ".so";
+            if ("aarch64".equals(System.getProperty("os.arch")))
+                return "/aarch64/lib" + name + ".so";
+            else
+                return "/x86_64/lib" + name + ".so";
         }
         throw new Exception("Unsupported platform " + os);
     }    
