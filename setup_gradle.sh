@@ -3,8 +3,8 @@
 # set the current directory
 pushd "$(dirname $0)"
 
-SDK_VER=8.1.5
-SDK_HASH=7fe88bf7
+SDK_VER=8.1.6
+SDK_HASH=afc51915
 
 arch=$(uname -m)
 
