@@ -3,8 +3,6 @@
  */
 package pdfix.java.gradle;
 
-import java.io.File;
-
 import net.pdfix.pdfixlib.*;
 
 public class App {
@@ -12,44 +10,13 @@ public class App {
         return "Hello World!";
     }
 
-    private static String getLibraryName(String name) throws Exception {
-
-        String os = System.getProperty("os.name").toLowerCase();
-        if ((os.indexOf("mac") >= 0) || (os.indexOf("darwin") >= 0)) {
-            if ("aarch64".equals(System.getProperty("os.arch")))
-                return "/arm64/lib" + name + ".dylib";
-            else
-                return "/x86_64/lib" + name + ".dylib";
-        } else if (os.indexOf("win") >= 0) {
-            if ("64".equals(System.getProperty("sun.arch.data.model")))
-                return "/x86_64/" + name + ".dll";
-            else
-                throw new Exception("Missing platform support");
-                // return "/x86/" + name + ".dll";
-        } else if (os.indexOf("nux") >= 0) {
-            if ("aarch64".equals(System.getProperty("os.arch")))
-                return "/aarch64/lib" + name + ".so";
-            else
-                return "/x86_64/lib" + name + ".so";
-        }
-        throw new Exception("Unsupported platform " + os);
-    }    
-
     public static void main(String[] args) {
-        System.out.println(new App().getGreeting());
-
-        // load pdfix libraries
-        System.out.println("Load PDFix dynamic libraries:");
         try {
-            String appPath = new File(".").getCanonicalPath();
-            System.load(appPath + "/pdfix/bin/" + getLibraryName("pdf"));
-        }
-        catch (Exception ex) {
-            System.out.println("Error: " + ex.getMessage());
-        }
-
         Pdfix pdfix = new Pdfix();
         System.out.println("PDFix SDK " + pdfix.GetVersionMajor() + "." +
                 pdfix.GetVersionMinor() + "." + pdfix.GetVersionPatch());
+        } catch (Exception ex) {
+            System.out.print(ex.getMessage());
+        }
     }
 }

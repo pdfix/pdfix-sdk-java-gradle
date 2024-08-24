@@ -8,16 +8,8 @@ For more information please visit [https://pdfix.net](https://pdfix.net).
 
 ## Setup
 
-Run setup_gradle.sh to download and install all dependencies, then execute main class net.pdfix.App.
-```
-setup_gradle.sh
-```
+Download `net.pdfix.pdfixlib.jar` and copy to `app/libs`
 
-This will unpack the required class libraries and binary files 
-- jar class library into app/libs 
-- runtime native dynamic libraries into
-
-Note: The script installs only native libraries for current platform. For example for mac M1 it's `bin/arm64/libpdf.dylib`. You can do this manually or add native runtimes for multiple platforms.
 All resources are available on https://pdfix.net/download.
 
 ## Build and run application
